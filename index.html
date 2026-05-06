@@ -250,16 +250,33 @@
             
             let photoData = '';
             try {
-                // 嘗試抓取照片並轉為 Base64 格式 (在您的 GitHub Pages 同網域下可正常運作)
+                // 嘗試抓取照片
                 const response = await fetch('./profile.jpg');
-                const blob = await response.blob();
-                const reader = new FileReader();
-                const base64Promise = new Promise((resolve) => {
-                    reader.onloadend = () => resolve(reader.result.split(',')[1]);
-                });
-                const base64 = await base64Promise;
-                if (base64) {
-                    photoData = `\nPHOTO;ENCODING=b;TYPE=JPEG:${base64}`;
+                
+                // 確認圖片有成功抓取，避免 404 造成轉換錯誤
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const reader = new FileReader();
+                    
+                    const base64Promise = new Promise((resolve) => {
+                        reader.onloadend = () => {
+                            // 擷取 Base64 字串部分
+                            if (reader.result) {
+                                resolve(reader.result.split(',')[1]);
+                            } else {
+                                resolve(null);
+                            }
+                        };
+                        reader.onerror = () => resolve(null);
+                    });
+                    
+                    // 加上這行啟動讀取機制
+                    reader.readAsDataURL(blob); 
+                    
+                    const base64 = await base64Promise;
+                    if (base64) {
+                        photoData = `\nPHOTO;ENCODING=b;TYPE=JPEG:${base64}`;
+                    }
                 }
             } catch (err) {
                 console.log('無法載入照片作為 vCard 頭像，將只儲存文字資訊', err);
@@ -279,6 +296,7 @@ ADR;TYPE=WORK:;;陽光街385號;內湖區;台北市;;台灣
 NOTE:政大 EMBA 105級文科資創組 / Line ID: eric.ytlin / WeChat: ericytlin${photoData}
 END:VCARD`;
 
+            // 建立下載連結
             const blobVCard = new Blob([vcardData], { type: 'text/vcard;charset=utf-8' });
             const url = URL.createObjectURL(blobVCard);
             const link = document.createElement('a');
@@ -288,7 +306,11 @@ END:VCARD`;
             link.click();
             document.body.removeChild(link);
             
-            showToast('已下載聯絡人資訊！');
+            // 延遲一點點釋放資源避免行動裝置阻擋
+            setTimeout(() => {
+                URL.revokeObjectURL(url);
+                showToast('已下載聯絡人資訊！');
+            }, 100);
         }
     </script>
 </body>
