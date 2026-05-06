@@ -85,6 +85,12 @@
                 </div>
                 <span class="text-xs text-gray-500">發送郵件</span>
             </a>
+            <a href="https://line.me/ti/p/~eric.ytlin" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-2 group">
+                <div class="w-12 h-12 rounded-full bg-[#06C755]/10 text-[#06C755] flex items-center justify-center text-xl group-hover:bg-[#06C755] group-hover:text-white transition-colors duration-300 shadow-sm">
+                    <i class="fab fa-line"></i>
+                </div>
+                <span class="text-xs text-gray-500 font-bold">加 LINE</span>
+            </a>
             <button onclick="downloadVCard()" class="flex flex-col items-center gap-2 group">
                 <div class="w-12 h-12 rounded-full bg-compal text-white flex items-center justify-center text-xl hover:bg-compal-dark transition-colors duration-300 shadow-md shadow-compal/30">
                     <i class="fas fa-user-plus"></i>
@@ -156,14 +162,9 @@
                     <div class="text-sm text-gray-700 flex-1">
                         eric.ytlin
                     </div>
-                    <div class="flex gap-2">
-                        <button onclick="copyText('eric.ytlin', 'Line ID')" class="text-xs bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded text-gray-600 transition">
-                            複製
-                        </button>
-                        <a href="https://line.me/ti/p/~eric.ytlin" target="_blank" rel="noopener noreferrer" class="text-xs bg-[#06C755] hover:bg-green-600 text-white px-3 py-1 rounded transition flex items-center shadow-sm">
-                            <i class="fas fa-plus mr-1"></i> 加好友
-                        </a>
-                    </div>
+                    <button onclick="copyText('eric.ytlin', 'Line ID')" class="text-xs bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded text-gray-600 transition">
+                        複製
+                    </button>
                 </div>
 
                 <div class="flex items-center gap-3">
@@ -243,8 +244,27 @@
             }, 2500);
         }
 
-        // 產生並下載 vCard (.vcf 檔案) 供一鍵加入通訊錄
-        function downloadVCard() {
+        // 產生並下載 vCard (.vcf 檔案) 供一鍵加入通訊錄，包含大頭照
+        async function downloadVCard() {
+            showToast('正在準備名片，請稍候...');
+            
+            let photoData = '';
+            try {
+                // 嘗試抓取照片並轉為 Base64 格式 (在您的 GitHub Pages 同網域下可正常運作)
+                const response = await fetch('./profile.jpg');
+                const blob = await response.blob();
+                const reader = new FileReader();
+                const base64Promise = new Promise((resolve) => {
+                    reader.onloadend = () => resolve(reader.result.split(',')[1]);
+                });
+                const base64 = await base64Promise;
+                if (base64) {
+                    photoData = `\nPHOTO;ENCODING=b;TYPE=JPEG:${base64}`;
+                }
+            } catch (err) {
+                console.log('無法載入照片作為 vCard 頭像，將只儲存文字資訊', err);
+            }
+
             const vcardData = `BEGIN:VCARD
 VERSION:3.0
 FN:林育澤
@@ -256,11 +276,11 @@ TEL;TYPE=CELL,VOICE:0910-136-822
 EMAIL;TYPE=WORK,INTERNET:eric.ytlin@gmail.com
 URL:https://ericytlin.github.io
 ADR;TYPE=WORK:;;陽光街385號;內湖區;台北市;;台灣
-NOTE:政大 EMBA 105級文科資創組 / Line ID: eric.ytlin / WeChat: ericytlin
+NOTE:政大 EMBA 105級文科資創組 / Line ID: eric.ytlin / WeChat: ericytlin${photoData}
 END:VCARD`;
 
-            const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
+            const blobVCard = new Blob([vcardData], { type: 'text/vcard;charset=utf-8' });
+            const url = URL.createObjectURL(blobVCard);
             const link = document.createElement('a');
             link.href = url;
             link.setAttribute('download', '林育澤_Eric.vcf');
@@ -268,7 +288,7 @@ END:VCARD`;
             link.click();
             document.body.removeChild(link);
             
-            showToast('正在下載名片聯絡人資訊...');
+            showToast('已下載聯絡人資訊！');
         }
     </script>
 </body>
