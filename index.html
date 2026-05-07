@@ -85,12 +85,13 @@
                 </div>
                 <span class="text-xs text-gray-500 font-bold">發送郵件</span>
             </a>
-            <a href="https://line.me/ti/p/~eric.ytlin" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-2 group">
+            <!-- 更新為一鍵加 LINE 並傳送功能 -->
+            <button onclick="addLineAndSendMsg()" class="flex flex-col items-center gap-2 group">
                 <div class="w-12 h-12 rounded-full bg-[#06C755]/10 text-[#06C755] flex items-center justify-center text-xl group-hover:bg-[#06C755] group-hover:text-white transition-colors duration-300 shadow-sm">
                     <i class="fab fa-line"></i>
                 </div>
                 <span class="text-xs text-gray-500 font-bold">加 LINE</span>
-            </a>
+            </button>
             <button onclick="downloadVCard()" class="flex flex-col items-center gap-2 group">
                 <div class="w-12 h-12 rounded-full bg-compal text-white flex items-center justify-center text-xl hover:bg-compal-dark transition-colors duration-300 shadow-md shadow-compal/30">
                     <i class="fas fa-user-plus"></i>
@@ -101,6 +102,13 @@
 
         <!-- 分隔線 -->
         <div class="w-11/12 mx-auto h-px bg-gray-200 my-6"></div>
+
+        <!-- 新增：一氣呵成加好友並回傳按鈕 (移至名片相片上方) -->
+        <div class="px-6 mb-2">
+            <button onclick="addLineAndSendMsg()" class="w-full bg-[#06C755] hover:bg-green-600 text-white text-sm py-3.5 rounded-lg transition-colors duration-300 shadow-md flex items-center justify-center font-bold tracking-wide border border-[#05a546]">
+                <i class="fas fa-user-plus mr-2 text-lg"></i> 一鍵加 Eric LINE 並打招呼
+            </button>
+        </div>
 
         <!-- 名片相片 -->
         <div class="px-6 mb-8 mt-2">
@@ -146,12 +154,7 @@
                         <a href="./photo4.jpg" download="Eric_Activity_4.jpg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fas fa-download"></i> 儲存</a>
                         <button onclick="shareToLine('https://ericytlin.github.io/photo4.jpg')" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fab fa-line"></i> 轉傳</button>
                     </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- 專屬網頁 QR Code 區塊 -->
+            <!-- 專屬網頁 QR Code 區塊 -->
         <div class="px-6 mt-2">
             <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 text-center shadow-lg relative overflow-hidden">
                 <!-- 裝飾 -->
@@ -172,8 +175,8 @@
                     <a href="https://ericytlin.github.io" target="_blank" class="flex-1 bg-white/10 hover:bg-white/20 text-white text-xs py-3 rounded-lg transition-colors duration-300 border border-white/20 flex items-center justify-center">
                         <i class="fas fa-link mr-1"></i> 開啟網頁
                     </a>
-                    <button onclick="shareCardToLine()" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs py-3 rounded-lg transition-colors duration-300 shadow-sm flex items-center justify-center">
-                        <i class="fab fa-line mr-1"></i> LINE 轉傳名片
+                    <button onclick="shareCardToLine()" class="flex-1 bg-gray-600 hover:bg-gray-500 text-white text-xs py-3 rounded-lg transition-colors duration-300 shadow-sm flex items-center justify-center">
+                        <i class="fab fa-line mr-1"></i> 轉傳給他人
                     </button>
                 </div>
             </div>
@@ -229,6 +232,35 @@
             const text = "與您分享 林育澤(Eric) 的數位名片！\n\n🌐 專屬網頁：https://ericytlin.github.io\n✅ LINE ID：eric.ytlin";
             const lineShareUrl = `https://line.me/R/msg/text/?${encodeURIComponent(text)}`;
             window.open(lineShareUrl, '_blank');
+        }
+
+        // 新增功能：一氣呵成加好友並複製打招呼文字
+        function addLineAndSendMsg() {
+            // 準備好要讓對方傳給您的文字
+            const text = "Hi Eric！很高興認識您！\n我已經將您的數位名片存起來囉：\nhttps://ericytlin.github.io";
+            
+            // 偷偷將這段文字複製到對方手機的剪貼簿
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                // 提示使用者已經複製，準備跳轉
+                showToast('已幫您複製招呼語！正在前往 LINE...');
+                
+                // 延遲 1.5 秒讓使用者看見提示，然後開啟加好友頁面
+                setTimeout(() => {
+                    window.open('https://line.me/ti/p/~eric.ytlin', '_blank');
+                }, 1500);
+            } catch (err) {
+                console.error('複製失敗', err);
+                // 萬一複製失敗（某些舊手機限制），還是直接幫他開 LINE
+                window.open('https://line.me/ti/p/~eric.ytlin', '_blank');
+            }
+            
+            document.body.removeChild(textArea);
         }
 
         // 產生並下載 vCard (.vcf 檔案) 供一鍵加入通訊錄，包含大頭照
