@@ -187,9 +187,12 @@
         <div class="w-11/12 mx-auto h-px bg-gray-200 my-6"></div>
 
         <!-- 新增：一氣呵成加好友並回傳按鈕 (移至名片相片上方) -->
-        <div class="px-6 mb-2">
+        <div class="px-6 mb-2 space-y-3">
             <button onclick="addLineAndSendMsg()" class="w-full bg-[#06C755] hover:bg-green-600 text-white text-sm py-3.5 rounded-lg transition-colors duration-300 shadow-md flex items-center justify-center font-bold tracking-wide border border-[#05a546]">
                 <i class="fas fa-user-plus mr-2 text-lg"></i> 一鍵加 Eric LINE 並打招呼
+            </button>
+            <button onclick="sendHelloToLine()" class="w-full bg-white hover:bg-gray-50 text-[#06C755] text-sm py-3.5 rounded-lg transition-colors duration-300 shadow-sm flex items-center justify-center font-bold tracking-wide border border-[#06C755]">
+                <i class="fas fa-comment-dots mr-2 text-lg"></i> 已是好友？點此發送 Hello
             </button>
         </div>
 
@@ -343,6 +346,27 @@
             document.body.removeChild(textArea);
 
             // 直接跳轉開啟 LINE，不使用 setTimeout，避免被 iPhone/Safari 的阻擋彈出視窗機制攔截
+            window.location.href = 'https://line.me/ti/p/~eric.ytlin';
+        }
+
+        // 新增功能：已是好友時，發送 Hello 訊息
+        function sendHelloToLine() {
+            const text = "Hello Eric！";
+            
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                // 提示使用者已經複製
+                showToast('已複製 Hello！前往 LINE 貼上即可');
+            } catch (err) {
+                console.error('複製失敗', err);
+            }
+            
+            document.body.removeChild(textArea);
             window.location.href = 'https://line.me/ti/p/~eric.ytlin';
         }
 
