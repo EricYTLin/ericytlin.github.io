@@ -206,9 +206,9 @@
             <!-- 網格排版，顯示四張照片 -->
             <div class="grid grid-cols-2 gap-4">
                 
-                <!-- 照片 1 (完整顯示不裁切 object-contain) -->
+                <!-- 照片 1 -->
                 <div class="bg-white p-2 border border-gray-200 rounded-lg shadow-sm">
-                    <img src="./photo1.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=照片+1'" alt="活動照片" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(this.src)">
+                    <img src="./photo1.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=照片+1'" alt="活動照片" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(0)">
                     <div class="flex gap-2">
                         <a href="./photo1.jpg" download="Eric_Activity_1.jpg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fas fa-download"></i> 儲存</a>
                         <button onclick="shareToLine('https://ericytlin.github.io/photo1.jpg')" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fab fa-line"></i> 轉傳</button>
@@ -217,7 +217,7 @@
 
                 <!-- 照片 2 -->
                 <div class="bg-white p-2 border border-gray-200 rounded-lg shadow-sm">
-                    <img src="./photo2.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=照片+2'" alt="活動照片" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(this.src)">
+                    <img src="./photo2.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=照片+2'" alt="活動照片" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(1)">
                     <div class="flex gap-2">
                         <a href="./photo2.jpg" download="Eric_Activity_2.jpg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fas fa-download"></i> 儲存</a>
                         <button onclick="shareToLine('https://ericytlin.github.io/photo2.jpg')" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fab fa-line"></i> 轉傳</button>
@@ -226,7 +226,7 @@
 
                 <!-- 照片 3 -->
                 <div class="bg-white p-2 border border-gray-200 rounded-lg shadow-sm">
-                    <img src="./photo3.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=照片+3'" alt="活動照片" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(this.src)">
+                    <img src="./photo3.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=照片+3'" alt="活動照片" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(2)">
                     <div class="flex gap-2">
                         <a href="./photo3.jpg" download="Eric_Activity_3.jpg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fas fa-download"></i> 儲存</a>
                         <button onclick="shareToLine('https://ericytlin.github.io/photo3.jpg')" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fab fa-line"></i> 轉傳</button>
@@ -235,7 +235,7 @@
 
                 <!-- 照片 4 -->
                 <div class="bg-white p-2 border border-gray-200 rounded-lg shadow-sm">
-                    <img src="./photo4.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=照片+4'" alt="活動照片" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(this.src)">
+                    <img src="./photo4.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=照片+4'" alt="活動照片" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(3)">
                     <div class="flex gap-2">
                         <a href="./photo4.jpg" download="Eric_Activity_4.jpg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fas fa-download"></i> 儲存</a>
                         <button onclick="shareToLine('https://ericytlin.github.io/photo4.jpg')" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fab fa-line"></i> 轉傳</button>
@@ -283,11 +283,30 @@
             <i class="fas fa-download hidden group-hover:block"></i>
         </button>
 
-        <!-- 新增：圖片放大預覽 Modal (這一段負責放大圖片，必須放在 main 裡面最底下或外面) -->
-        <div id="imageModal" class="fixed inset-0 z-[100] hidden bg-black/90 flex flex-col items-center justify-center backdrop-blur-sm transition-opacity duration-300 opacity-0" onclick="closeImageModal()">
-            <button class="absolute top-6 right-6 text-white text-3xl hover:text-gray-300 focus:outline-none" onclick="closeImageModal()">&times;</button>
-            <img id="modalImage" src="" alt="Enlarged Photo" class="max-w-[95%] max-h-[85vh] object-contain rounded-md shadow-2xl scale-95 transition-transform duration-300 cursor-zoom-out">
-            <p class="text-white/70 text-sm mt-4 tracking-wider">點擊任意處關閉</p>
+        <!-- 新增：圖片放大預覽與滑動切換 Modal -->
+        <div id="imageModal" class="fixed inset-0 z-[100] hidden bg-black/95 flex flex-col items-center justify-center backdrop-blur-md transition-opacity duration-300 opacity-0" onclick="closeImageModal()">
+            <button class="absolute top-6 right-6 text-white/70 text-4xl hover:text-white focus:outline-none z-50 transition" onclick="closeImageModal()">&times;</button>
+            
+            <!-- 左切換按鈕 (電腦版點擊用) -->
+            <button class="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 text-white/30 hover:text-white text-3xl md:text-5xl p-4 focus:outline-none z-50 transition" onclick="event.stopPropagation(); changeImage(-1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <!-- 圖片本體 -->
+            <img id="modalImage" src="" alt="Enlarged Photo" class="max-w-[90%] max-h-[80vh] object-contain rounded-md shadow-2xl scale-95 transition-all duration-300 cursor-default" onclick="event.stopPropagation();">
+            
+            <!-- 右切換按鈕 (電腦版點擊用) -->
+            <button class="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 text-white/30 hover:text-white text-3xl md:text-5xl p-4 focus:outline-none z-50 transition" onclick="event.stopPropagation(); changeImage(1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <!-- 提示文字 -->
+            <div class="absolute bottom-10 flex flex-col items-center gap-1">
+                <div class="flex gap-2" id="modalIndicators">
+                    <!-- 圓點指示器由 JS 動態生成 -->
+                </div>
+                <p class="text-white/50 text-xs mt-2 tracking-wider">左右滑動切換照片，點擊背景關閉</p>
+            </div>
         </div>
 
     </main>
@@ -440,11 +459,23 @@ END:VCARD`;
             }, 100);
         }
 
-        // 新增功能：開啟圖片放大 Modal
-        function openImageModal(src) {
+        // 定義相簿陣列與當前索引
+        const photoGallery = [
+            './photo1.jpg',
+            './photo2.jpg',
+            './photo3.jpg',
+            './photo4.jpg'
+        ];
+        let currentPhotoIndex = 0;
+
+        // 開啟圖片放大 Modal
+        function openImageModal(index) {
+            currentPhotoIndex = index;
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
-            modalImg.src = src;
+            
+            modalImg.src = photoGallery[currentPhotoIndex];
+            updateIndicators();
             
             // 顯示 Modal
             modal.classList.remove('hidden');
@@ -457,7 +488,7 @@ END:VCARD`;
             }, 10);
         }
 
-        // 新增功能：關閉圖片放大 Modal
+        // 關閉圖片放大 Modal
         function closeImageModal() {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
@@ -471,6 +502,65 @@ END:VCARD`;
             setTimeout(() => {
                 modal.classList.add('hidden');
             }, 300);
+        }
+
+        // 切換圖片 (direction: 1 為下一張, -1 為上一張)
+        function changeImage(direction) {
+            currentPhotoIndex += direction;
+            
+            // 循環邏輯
+            if (currentPhotoIndex < 0) currentPhotoIndex = photoGallery.length - 1;
+            if (currentPhotoIndex >= photoGallery.length) currentPhotoIndex = 0;
+            
+            const modalImg = document.getElementById('modalImage');
+            
+            // 增加淡出淡入效果
+            modalImg.style.opacity = '0.3';
+            modalImg.style.transform = `scale(0.98)`;
+            
+            setTimeout(() => {
+                modalImg.src = photoGallery[currentPhotoIndex];
+                updateIndicators();
+                modalImg.style.opacity = '1';
+                modalImg.style.transform = `scale(1)`;
+            }, 150);
+        }
+
+        // 更新下方小圓點指示器
+        function updateIndicators() {
+            const container = document.getElementById('modalIndicators');
+            container.innerHTML = '';
+            photoGallery.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.className = `w-2 h-2 rounded-full transition-all duration-300 ${index === currentPhotoIndex ? 'bg-white scale-125' : 'bg-white/30'}`;
+                container.appendChild(dot);
+            });
+        }
+
+        // 手機滑動 (Swipe) 偵測邏輯
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const modalElement = document.getElementById('imageModal');
+
+        modalElement.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        modalElement.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50; // 最低滑動距離判定 (避免誤觸)
+            if (touchEndX < touchStartX - swipeThreshold) {
+                // 向左滑動 -> 下一張
+                changeImage(1);
+            }
+            if (touchEndX > touchStartX + swipeThreshold) {
+                // 向右滑動 -> 上一張
+                changeImage(-1);
+            }
         }
     </script>
 </body>
