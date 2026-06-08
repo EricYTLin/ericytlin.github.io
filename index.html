@@ -169,76 +169,104 @@
                 </div>
                 
                 <!-- 網格排版，顯示四張照片 -->
-                <div class="grid grid-cols-2 gap-4">
-                    
-                    <!-- 照片 1 (點擊觸發放大 openImageModal) -->
-                    <div class="bg-white p-2 border border-gray-200 rounded-lg shadow-sm">
-                        <img src="./photo1.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=照片+1'" alt="活動照片" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(0)">
-                        <div class="flex gap-2">
-                            <a href="./photo1.jpg" download="Eric_Activity_1.jpg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fas fa-download"></i> 儲存</a>
-                            <button onclick="shareToLine('https://ericytlin.github.io/photo1.jpg')" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fab fa-line"></i> 轉傳</button>
-                        </div>
-                    </div>
-
-                    <!-- 照片 2 -->
-                    <div class="bg-white p-2 border border-gray-200 rounded-lg shadow-sm">
-                        <img src="./photo2.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=照片+2'" alt="活動照片" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(1)">
-                        <div class="flex gap-2">
-                            <a href="./photo2.jpg" download="Eric_Activity_2.jpg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fas fa-download"></i> 儲存</a>
-                            <button onclick="shareToLine('https://ericytlin.github.io/photo2.jpg')" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fab fa-line"></i> 轉傳</button>
-                        </div>
-                    </div>
-
-                    <!-- 照片 3 -->
-                    <div class="bg-white p-2 border border-gray-200 rounded-lg shadow-sm">
-                        <img src="./photo3.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=照片+3'" alt="活動照片" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(2)">
-                        <div class="flex gap-2">
-                            <a href="./photo3.jpg" download="Eric_Activity_3.jpg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fas fa-download"></i> 儲存</a>
-                            <button onclick="shareToLine('https://ericytlin.github.io/photo3.jpg')" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fab fa-line"></i> 轉傳</button>
-                        </div>
-                    </div>
-
-                    <!-- 照片 4 -->
-                    <div class="bg-white p-2 border border-gray-200 rounded-lg shadow-sm">
-                        <img src="./photo4.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=照片+4'" alt="活動照片" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(3)">
-                        <div class="flex gap-2">
-                            <a href="./photo4.jpg" download="Eric_Activity_4.jpg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fas fa-download"></i> 儲存</a>
-                            <button onclick="shareToLine('https://ericytlin.github.io/photo4.jpg')" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fab fa-line"></i> 轉傳</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 專屬網頁 QR Code 區塊 -->
-            <div class="px-6 mt-2">
-                <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 text-center shadow-lg relative overflow-hidden">
-                    <!-- 裝飾 -->
-                    <div class="absolute top-0 right-0 w-20 h-20 bg-compal opacity-20 rounded-bl-full"></div>
-                    
-                    <h2 class="text-white font-bold mb-1">我的個人專屬網頁</h2>
-                    <p class="text-gray-400 text-xs mb-4">掃描下方 QR Code 或點擊連結分享</p>
-                    
-                    <!-- 自動生成 QR Code (指向您的 GitHub Pages) -->
-                    <div class="bg-white p-3 rounded-xl inline-block shadow-inner mb-4">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://ericytlin.github.io&margin=0" 
-                             alt="GitHub Pages QR Code" 
-                             class="w-36 h-36 mx-auto">
-                    </div>
-                    
-                    <!-- 開啟網頁與轉傳名片雙按鈕 -->
+            <div class="grid grid-cols-2 gap-4">
+                
+                <!-- 照片 1 (點擊觸發放大 openImageModal) -->
+                <div class="bg-white p-2 border border-gray-200 rounded-lg shadow-sm">
+                    <img src="./photo1.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=照片+1'" alt="活動照片" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(0)">
                     <div class="flex gap-2">
-                        <a href="https://ericytlin.github.io" target="_blank" class="flex-1 bg-white/10 hover:bg-white/20 text-white text-xs py-3 rounded-lg transition-colors duration-300 border border-white/20 flex items-center justify-center">
-                            <i class="fas fa-link mr-1"></i> 開啟網頁
-                        </a>
-                        <button onclick="shareCardToLine()" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs py-3 rounded-lg transition-colors duration-300 shadow-sm flex items-center justify-center">
-                            <i class="fab fa-line mr-1"></i> LINE 轉傳名片
-                        </button>
+                        <a href="./photo1.jpg" download="Eric_Activity_1.jpg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fas fa-download"></i> 儲存</a>
+                        <button onclick="shareToLine('https://ericytlin.github.io/photo1.jpg')" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fab fa-line"></i> 轉傳</button>
+                    </div>
+                </div>
+
+                <!-- 照片 2 -->
+                <div class="bg-white p-2 border border-gray-200 rounded-lg shadow-sm">
+                    <img src="./photo2.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=照片+2'" alt="活動照片" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(1)">
+                    <div class="flex gap-2">
+                        <a href="./photo2.jpg" download="Eric_Activity_2.jpg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fas fa-download"></i> 儲存</a>
+                        <button onclick="shareToLine('https://ericytlin.github.io/photo2.jpg')" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fab fa-line"></i> 轉傳</button>
+                    </div>
+                </div>
+
+                <!-- 照片 3 -->
+                <div class="bg-white p-2 border border-gray-200 rounded-lg shadow-sm">
+                    <img src="./photo3.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=照片+3'" alt="活動照片" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(2)">
+                    <div class="flex gap-2">
+                        <a href="./photo3.jpg" download="Eric_Activity_3.jpg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fas fa-download"></i> 儲存</a>
+                        <button onclick="shareToLine('https://ericytlin.github.io/photo3.jpg')" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fab fa-line"></i> 轉傳</button>
+                    </div>
+                </div>
+
+                <!-- 照片 4 -->
+                <div class="bg-white p-2 border border-gray-200 rounded-lg shadow-sm">
+                    <img src="./photo4.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=照片+4'" alt="活動照片" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(3)">
+                    <div class="flex gap-2">
+                        <a href="./photo4.jpg" download="Eric_Activity_4.jpg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fas fa-download"></i> 儲存</a>
+                        <button onclick="shareToLine('https://ericytlin.github.io/photo4.jpg')" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fab fa-line"></i> 轉傳</button>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- 底部版權 -->
-            <div class="text-center text-xs text-gray-400 mt-8 pb-4">
+        <!-- 網頁與社群 QR Code 區塊 (修改為雙欄) -->
+        <div class="px-6 mt-2">
+            <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 text-center shadow-lg relative overflow-hidden">
+                <!-- 裝飾 -->
+                <div class="absolute top-0 right-0 w-20 h-20 bg-compal opacity-20 rounded-bl-full"></div>
+                
+                <h2 class="text-white font-bold mb-4 tracking-wide">個人網頁與社群連結</h2>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- 左側：專屬網頁 -->
+                    <div class="flex flex-col items-center">
+                        <p class="text-gray-400 text-xs mb-2">我的數位名片</p>
+                        <!-- 自動生成 專屬網頁 QR Code -->
+                        <div class="bg-white p-2 rounded-xl inline-block shadow-inner mb-3">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://ericytlin.github.io&margin=0" 
+                                 alt="GitHub Pages QR Code" 
+                                 class="w-28 h-28">
+                        </div>
+                        <div class="flex flex-col gap-2 w-full">
+                            <a href="https://ericytlin.github.io" target="_blank" class="w-full bg-white/10 hover:bg-white/20 text-white text-xs py-2 rounded-lg transition-colors duration-300 border border-white/20 flex items-center justify-center">
+                                <i class="fas fa-link mr-1"></i> 開啟網頁
+                            </a>
+                            <button onclick="shareCardToLine()" class="w-full bg-[#06C755] hover:bg-green-600 text-white text-xs py-2 rounded-lg transition-colors duration-300 shadow-sm flex items-center justify-center">
+                                <i class="fab fa-line mr-1"></i> 轉傳名片
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 右側：Facebook -->
+                    <div class="flex flex-col items-center">
+                        <p class="text-gray-400 text-xs mb-2">Facebook 主頁</p>
+                        <!-- 自動生成 Facebook QR Code -->
+                        <div class="bg-white p-2 rounded-xl inline-block shadow-inner mb-3 relative">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.facebook.com/eric.lin.520125&margin=0" 
+                                 alt="Facebook QR Code" 
+                                 class="w-28 h-28">
+                            <!-- 在 QR Code 中間放一個小小的 FB Logo -->
+                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full p-1">
+                                <i class="fab fa-facebook text-[#1877F2] text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2 w-full">
+                            <!-- fb://profile/ 嘗試直接開 App，如果失敗會用一般網址開 -->
+                            <a href="https://www.facebook.com/eric.lin.520125" target="_blank" class="w-full bg-[#1877F2] hover:bg-blue-600 text-white text-xs py-2 rounded-lg transition-colors duration-300 shadow-sm flex items-center justify-center">
+                                <i class="fab fa-facebook-f mr-1"></i> 開啟 Facebook
+                            </a>
+                             <!-- 佔位用透明按鈕，保持左右高度對齊 -->
+                             <div class="w-full text-transparent text-xs py-2">
+                                佔位
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部版權 -->
+        <div class="text-center text-xs text-gray-400 mt-8 pb-4">
                 &copy; <script>document.write(new Date().getFullYear())</script> Eric Lin. All rights reserved.
             </div>
 
