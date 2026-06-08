@@ -84,8 +84,9 @@
                 </div>
                 <span class="text-xs text-gray-500 font-bold">發送郵件</span>
             </a>
+            <!-- 放大加 LINE 圖示 (text-3xl) -->
             <button onclick="addLineAndSendMsg()" class="flex flex-col items-center gap-2 group">
-                <div class="w-12 h-12 rounded-full bg-[#06C755]/10 text-[#06C755] flex items-center justify-center text-xl group-hover:bg-[#06C755] group-hover:text-white transition-colors duration-300 shadow-sm">
+                <div class="w-12 h-12 rounded-full bg-[#06C755]/10 text-[#06C755] flex items-center justify-center text-3xl group-hover:bg-[#06C755] group-hover:text-white transition-colors duration-300 shadow-sm">
                     <i class="fab fa-line"></i>
                 </div>
                 <span class="text-xs text-gray-500 font-bold">加 LINE</span>
@@ -140,13 +141,16 @@
         <div class="px-6 mb-8">
             <h2 class="text-sm font-bold text-compal uppercase tracking-wider mb-3"><i class="fas fa-briefcase mr-2"></i>業界經歷</h2>
             <div class="bg-white rounded-xl p-5 border border-gray-100 shadow-sm">
-                <div class="flex flex-wrap justify-center items-center gap-x-5 gap-y-4">
-                    <!-- 請確保這些 Logo 圖片已上傳至 GitHub，預設會有灰階效果，點擊/滑過變彩色 -->
-                    <img src="./acer_logo.png" onerror="this.src='https://placehold.co/80x30/FFF/666?text=Acer'" alt="Acer" title="Acer" class="h-6 object-contain grayscale hover:grayscale-0 transition duration-300">
-                    <img src="./htc_logo.png" onerror="this.src='https://placehold.co/80x30/FFF/666?text=HTC'" alt="HTC Corporation" title="HTC Corporation" class="h-6 object-contain grayscale hover:grayscale-0 transition duration-300">
-                    <img src="./phitech_logo.png" onerror="this.src='https://placehold.co/100x30/FFF/666?text=Phitech'" alt="Phitech Technology" title="Phitech Technology" class="h-6 object-contain grayscale hover:grayscale-0 transition duration-300">
-                    <img src="./commverge_logo.png" onerror="this.src='https://placehold.co/110x30/FFF/666?text=CommVerge'" alt="CommVerge Solutions" title="CommVerge Solutions" class="h-6 object-contain grayscale hover:grayscale-0 transition duration-300">
-                    <img src="./lucent_logo.png" onerror="this.src='https://placehold.co/90x30/FFF/666?text=Lucent'" alt="Lucent Technologies" title="Lucent Technologies" class="h-6 object-contain grayscale hover:grayscale-0 transition duration-300">
+                <!-- 改用 Grid 排版，讓 Logo 均勻分散，並移除灰階效果 -->
+                <div class="grid grid-cols-3 gap-6 place-items-center">
+                    <img src="./acer_logo.png" onerror="this.src='https://placehold.co/80x30/FFF/666?text=Acer'" alt="Acer" title="Acer" class="h-6 md:h-8 object-contain">
+                    <img src="./htc_logo.png" onerror="this.src='https://placehold.co/80x30/FFF/666?text=HTC'" alt="HTC Corporation" title="HTC Corporation" class="h-6 md:h-8 object-contain">
+                    <img src="./phitech_logo.png" onerror="this.src='https://placehold.co/100x30/FFF/666?text=Phitech'" alt="Phitech Technology" title="Phitech Technology" class="h-6 md:h-8 object-contain">
+                    <!-- 最後兩個 Logo 會自動在第二列置中對齊 -->
+                    <div class="col-span-3 flex justify-center gap-8 mt-2">
+                        <img src="./commverge_logo.png" onerror="this.src='https://placehold.co/110x30/FFF/666?text=CommVerge'" alt="CommVerge Solutions" title="CommVerge Solutions" class="h-6 md:h-8 object-contain">
+                        <img src="./lucent_logo.png" onerror="this.src='https://placehold.co/90x30/FFF/666?text=Lucent'" alt="Lucent Technologies" title="Lucent Technologies" class="h-6 md:h-8 object-contain">
+                    </div>
                 </div>
             </div>
         </div>
