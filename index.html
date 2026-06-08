@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>林育澤 (Eric) - 數位名片</title>
-    <!-- 引入 Tailwind CSS 進行快速排版 -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 引入 FontAwesome 圖示庫 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script>
@@ -14,12 +12,14 @@
             theme: {
                 extend: {
                     colors: {
-                        // 配合原圖的深綠色與深藍色
+                        // 仁寶電腦專屬綠色系
                         compal: {
-                            DEFAULT: '#1c5e31', 
-                            light: '#2a8747',
+                            light: '#a1c96b',
+                            DEFAULT: '#7eb338', 
+                            dark: '#5c8526'
                         },
-                        nccu: '#183058' 
+                        // 政大藍色系
+                        nccu: '#002347'
                     }
                 }
             }
@@ -27,7 +27,7 @@
     </script>
     <style>
         body {
-            background-color: #e5e7eb;
+            background-color: #f3f4f6;
             font-family: 'Helvetica Neue', Arial, 'LiHei Pro', 'Microsoft JhengHei', sans-serif;
             /* 防止 iOS 滑動回彈造成的白邊 */
             overscroll-behavior-y: none;
@@ -37,203 +37,240 @@
             width: 0px;
             background: transparent;
         }
-        .bg-pattern {
-            background-image: radial-gradient(#1c5e31 0.5px, transparent 0.5px);
-            background-size: 15px 15px;
-            opacity: 0.05;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
     </style>
 </head>
 <body class="flex justify-center min-h-screen text-gray-800 selection:bg-compal selection:text-white">
 
-    <!-- 手機版型主容器 -->
-    <main class="w-full max-w-md mx-auto bg-white min-h-screen shadow-2xl relative overflow-hidden flex flex-col">
+    <main class="w-full max-w-md bg-white min-h-screen shadow-2xl relative overflow-hidden flex flex-col pb-6">
         
-        <!-- 背景裝飾底圖 -->
-        <div class="absolute inset-0 bg-pattern pointer-events-none"></div>
+        <!-- 頂部綠色背景裝飾 -->
+        <div class="h-44 bg-gradient-to-br from-compal to-compal-dark relative">
+            <!-- 裝飾圓圈 -->
+            <div class="absolute -top-10 -right-10 w-32 h-32 bg-white opacity-10 rounded-full"></div>
+            <div class="absolute top-10 -left-10 w-24 h-24 bg-white opacity-10 rounded-full"></div>
+        </div>
 
-        <div class="relative z-10 flex-1 flex flex-col pt-10 pb-4">
+        <!-- 個人頭像與基本資訊 -->
+        <div class="px-6 relative -mt-24 text-center mb-6">
+            <!-- 從 GitHub 讀取同資料夾下的 profile.jpg -->
+            <img src="./profile.jpg" 
+                 alt="Profile Picture" 
+                 class="w-36 h-36 mx-auto rounded-full border-4 border-white shadow-lg object-cover bg-white relative z-10"
+                 onerror="this.src='https://ui-avatars.com/api/?name=Eric+Lin&background=ffffff&color=7eb338&size=150&font-size=0.33'">
             
-            <!-- 頂部：仁寶 Logo -->
-            <div class="text-center px-4 mb-4">
-                <img src="./compal_logo.png" onerror="this.src='https://placehold.co/300x70/FFF/1c5e31?text=COMPAL+仁寶電腦'" alt="COMPAL 仁寶電腦" class="h-12 mx-auto object-contain">
-            </div>
+            <h1 class="text-4xl font-bold mt-4 text-gray-900 tracking-wider">林育澤</h1>
+            <p class="text-2xl text-gray-600 font-medium mt-1">Eric <span class="text-compal font-bold">好立刻</span></p>
             
-            <!-- 政大 EMBA 校徽與書法字 -->
-            <div class="text-center px-4 mb-8">
-                <img src="./nccu_emba.png" onerror="this.src='https://placehold.co/350x70/FFF/183058?text=政大+EMBA'" alt="政大 EMBA" class="h-14 mx-auto object-contain">
-            </div>
+            <p class="text-base font-bold text-gray-500 mt-3 tracking-widest uppercase">COMPAL 仁寶電腦</p>
+            <p class="text-base text-gray-500 font-medium">智慧型裝置事業群 SDBG</p>
+        </div>
 
-            <!-- 照片與姓名區塊 -->
-            <div class="flex items-end justify-center px-6 gap-5 mb-6 border-b-4 border-compal pb-0 mx-6">
-                <!-- 讀取您的個人頭像 -->
-                <img src="./profile.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Eric+Lin&background=f3f4f6&color=1c5e31&size=200'" alt="林育澤" class="w-32 h-44 object-cover object-top rounded-t-sm shadow-sm">
-                <div class="pb-3">
-                    <h1 class="text-4xl md:text-5xl font-bold text-compal mb-2 tracking-widest whitespace-nowrap">林育澤</h1>
-                    <p class="text-2xl text-compal font-bold tracking-wide whitespace-nowrap">Eric 好立刻</p>
+        <!-- 快速動作按鈕 -->
+        <div class="flex justify-center gap-5 px-6 mb-6">
+            <a href="tel:0910136822" class="flex flex-col items-center gap-2 group">
+                <div class="w-12 h-12 rounded-full bg-compal/10 text-compal flex items-center justify-center text-xl group-hover:bg-compal group-hover:text-white transition-colors duration-300 shadow-sm">
+                    <i class="fas fa-phone"></i>
                 </div>
-            </div>
+                <span class="text-xs text-gray-500 font-bold">撥打電話</span>
+            </a>
+            <a href="mailto:eric.ytlin@gmail.com" class="flex flex-col items-center gap-2 group">
+                <div class="w-12 h-12 rounded-full bg-compal/10 text-compal flex items-center justify-center text-xl group-hover:bg-compal group-hover:text-white transition-colors duration-300 shadow-sm">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <span class="text-xs text-gray-500 font-bold">發送郵件</span>
+            </a>
+            <button onclick="addLineAndSendMsg()" class="flex flex-col items-center gap-2 group">
+                <div class="w-12 h-12 rounded-full bg-[#06C755]/10 text-[#06C755] flex items-center justify-center text-xl group-hover:bg-[#06C755] group-hover:text-white transition-colors duration-300 shadow-sm">
+                    <i class="fab fa-line"></i>
+                </div>
+                <span class="text-xs text-gray-500 font-bold">加 LINE</span>
+            </button>
+            <button onclick="downloadVCard()" class="flex flex-col items-center gap-2 group">
+                <div class="w-12 h-12 rounded-full bg-compal text-white flex items-center justify-center text-xl hover:bg-compal-dark transition-colors duration-300 shadow-md shadow-compal/30">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <span class="text-xs text-gray-500 font-bold">儲存聯絡人</span>
+            </button>
+        </div>
 
-            <!-- EMBA 經歷 -->
-            <div class="text-center px-6 mb-6 mt-2">
-                <div class="text-nccu text-lg font-bold mb-3 tracking-wide leading-snug">政大 EMBA 105級文科資創組</div>
-                <div class="text-compal text-xl font-bold mb-1 tracking-widest leading-snug">自行車社社長 <span class="font-sans">2018</span></div>
-                <div class="text-compal text-xl font-bold tracking-widest leading-snug">班聯會秘書長 <span class="font-sans">2018</span></div>
+        <div class="w-11/12 mx-auto h-px bg-gray-200 mb-6"></div>
+
+        <!-- 學歷與經歷 (為 EMBA 學長姐特別設計) -->
+        <div class="px-6 space-y-4 mb-6">
+            <h2 class="text-sm font-bold text-compal uppercase tracking-wider mb-3"><i class="fas fa-graduation-cap mr-2"></i>學歷與經歷</h2>
+            
+            <!-- 政大 EMBA -->
+            <div class="bg-blue-50/50 rounded-xl p-5 border border-blue-100 shadow-sm relative overflow-hidden">
+                <div class="absolute -right-4 -bottom-4 opacity-5 text-blue-900 text-7xl">
+                    <i class="fas fa-university"></i>
+                </div>
+                <h3 class="font-bold text-nccu text-xl">政大 EMBA</h3>
+                <p class="text-base text-gray-600 mt-1 font-medium">105級 文科資創組</p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                    <span class="text-sm font-bold text-nccu bg-white px-3 py-1.5 rounded shadow-sm border border-blue-50">自行車社社長 (2018)</span>
+                    <span class="text-sm font-bold text-nccu bg-white px-3 py-1.5 rounded shadow-sm border border-blue-50">班聯會秘書長 (2018)</span>
+                </div>
             </div>
 
             <!-- 其他學歷 -->
-            <div class="flex flex-col justify-center items-center gap-3 px-6 mb-6 mt-2">
-                <div class="flex items-center justify-center gap-2 w-full">
-                    <img src="./imba_logo.png" onerror="this.src='https://placehold.co/100x40/FFF/183058?text=IMBA'" alt="IMBA" class="h-10 object-contain">
-                    <span class="font-bold text-gray-900 text-base tracking-wide mt-1">政大 IMBA 2003</span>
-                </div>
-                <div class="flex items-center justify-center gap-2 w-full">
-                    <span class="font-bold text-gray-900 text-base tracking-wide text-center leading-snug">國立中央大學 電機系 1994級 11屆</span>
-                </div>
-            </div>
-
-            <!-- 業界經歷 (Logo 版) -->
-            <div class="text-center px-4 mb-6 mt-4">
-                <h2 class="text-xs font-bold text-gray-400 tracking-widest mb-4 uppercase">Industry Experience</h2>
-                <div class="flex flex-wrap justify-center items-center gap-4 mt-2">
-                    <!-- 請將這些公司的 Logo 去背圖上傳至 GitHub -->
-                    <img src="./acer_logo.png" onerror="this.src='https://placehold.co/80x30/FFF/666?text=Acer'" alt="Acer" title="Acer" class="h-5 md:h-6 object-contain grayscale hover:grayscale-0 transition duration-300">
-                    <img src="./htc_logo.png" onerror="this.src='https://placehold.co/80x30/FFF/666?text=HTC'" alt="HTC Corporation" title="HTC Corporation" class="h-5 md:h-6 object-contain grayscale hover:grayscale-0 transition duration-300">
-                    <img src="./phitech_logo.png" onerror="this.src='https://placehold.co/100x30/FFF/666?text=Phitech'" alt="Phitech Technology" title="Phitech Technology" class="h-5 md:h-6 object-contain grayscale hover:grayscale-0 transition duration-300">
-                    <img src="./commverge_logo.png" onerror="this.src='https://placehold.co/110x30/FFF/666?text=CommVerge'" alt="CommVerge Solutions" title="CommVerge Solutions" class="h-5 md:h-6 object-contain grayscale hover:grayscale-0 transition duration-300">
-                    <img src="./lucent_logo.png" onerror="this.src='https://placehold.co/90x30/FFF/666?text=Lucent'" alt="Lucent Technologies" title="Lucent Technologies" class="h-5 md:h-6 object-contain grayscale hover:grayscale-0 transition duration-300">
-                </div>
-            </div>
-
-            <!-- 快捷操作列 (打電話/發郵件/加LINE) -->
-            <div class="flex justify-center gap-6 px-6 mb-8 mt-2">
-                <a href="tel:0910136822" class="flex flex-col items-center gap-2 group">
-                    <div class="w-12 h-12 rounded-full bg-compal/10 text-compal flex items-center justify-center text-xl group-hover:bg-compal group-hover:text-white transition-colors duration-300 shadow-sm">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <span class="text-xs text-gray-600 font-bold tracking-wide">撥打電話</span>
-                </a>
-                <a href="mailto:eric.ytlin@gmail.com" class="flex flex-col items-center gap-2 group">
-                    <div class="w-12 h-12 rounded-full bg-compal/10 text-compal flex items-center justify-center text-xl group-hover:bg-compal group-hover:text-white transition-colors duration-300 shadow-sm">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <span class="text-xs text-gray-600 font-bold tracking-wide">發送郵件</span>
-                </a>
-                <a href="https://line.me/ti/p/~eric.ytlin" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-2 group">
-                    <div class="w-12 h-12 rounded-full bg-[#06C755]/10 text-[#06C755] flex items-center justify-center text-2xl group-hover:bg-[#06C755] group-hover:text-white transition-colors duration-300 shadow-sm">
-                        <i class="fab fa-line"></i>
-                    </div>
-                    <span class="text-xs text-gray-600 font-bold tracking-wide">加 LINE</span>
-                </a>
-            </div>
-
-            <!-- 分隔線 -->
-            <div class="mx-6 border-t border-gray-300 mb-6"></div>
-
-            <!-- 聯絡資訊區塊 -->
-            <div class="flex flex-row px-8 mb-8 mt-auto">
-                <div class="w-5/12 pr-4 border-r-2 border-gray-300 flex flex-col justify-center">
-                    <div class="font-bold text-gray-900 text-sm mb-1 tracking-wide">智慧型裝置事業群 SDBG</div>
-                    <div class="text-gray-700 text-xs tracking-wider">台北市內湖區陽光街385號</div>
-                </div>
-                <div class="w-7/12 pl-4 flex flex-col justify-center space-y-1.5">
-                    <a href="tel:0910136822" class="text-gray-900 text-xs font-medium tracking-wide hover:text-compal transition-colors block">手機：0910-136-822</a>
-                    <a href="mailto:eric.ytlin@gmail.com" class="text-gray-900 text-xs font-medium tracking-wide hover:text-compal transition-colors block">郵箱：eric.ytlin@gmail.com</a>
-                    <div class="text-gray-900 text-xs font-medium flex items-center justify-between group cursor-pointer" onclick="copyText('eric.ytlin', 'Line ID')">
-                        <span>Line ID：eric.ytlin</span>
-                        <i class="fas fa-copy text-gray-400 group-hover:text-compal"></i>
-                    </div>
-                    <div class="text-gray-900 text-xs font-medium flex items-center justify-between group cursor-pointer" onclick="copyText('ericytlin', 'WeChat ID')">
-                        <span>WeChat：ericytlin</span>
-                        <i class="fas fa-copy text-gray-400 group-hover:text-compal"></i>
+            <div class="bg-gray-50 rounded-xl p-5 border border-gray-100 shadow-sm space-y-4 relative overflow-hidden">
+                 <div class="flex items-start gap-3">
+                    <div class="mt-1 text-gray-400 text-lg"><i class="fas fa-award"></i></div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 text-lg">政大 IMBA</h3>
+                        <p class="text-sm text-gray-500 font-medium">2003 級</p>
                     </div>
                 </div>
-            </div>
-
-            <!-- 分隔線 -->
-            <div class="mx-6 border-t border-gray-300 mb-6"></div>
-
-            <!-- 新增：一氣呵成加好友並回傳按鈕 (移至名片相片上方) -->
-            <div class="px-6 mb-4 space-y-3">
-                <button onclick="addLineAndSendMsg()" class="w-full bg-[#06C755] hover:bg-green-600 text-white text-sm py-3.5 rounded-lg transition-colors duration-300 shadow-md flex items-center justify-center font-bold tracking-wide border border-[#05a546]">
-                    <i class="fas fa-user-plus mr-2 text-lg"></i> 一鍵加 Eric LINE 並打招呼
-                </button>
-                <button onclick="sendHelloToLine()" class="w-full bg-white hover:bg-gray-50 text-[#06C755] text-sm py-3.5 rounded-lg transition-colors duration-300 shadow-sm flex items-center justify-center font-bold tracking-wide border border-[#06C755]">
-                    <i class="fas fa-comment-dots mr-2 text-lg"></i> 已是好友？點此發送 Hello
-                </button>
-            </div>
-
-            <!-- 名片相片 -->
-            <div class="px-6 mb-8 mt-2">
-                <div class="flex items-center gap-2 mb-4 text-compal font-bold tracking-widest text-lg justify-center">
-                    <i class="fas fa-images"></i>
-                    <h2>名片相片</h2>
-                </div>
-                
-                <!-- 網格排版，顯示四張照片 -->
-            <div class="grid grid-cols-2 gap-4">
-                
-                <!-- 照片 1 (點擊觸發放大 openImageModal) -->
-                <div class="bg-white p-2 border border-gray-200 rounded-lg shadow-sm">
-                    <img src="./photo1.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=照片+1'" alt="活動照片" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(0)">
-                    <div class="flex gap-2">
-                        <a href="./photo1.jpg" download="Eric_Activity_1.jpg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fas fa-download"></i> 儲存</a>
-                        <button onclick="shareToLine('https://ericytlin.github.io/photo1.jpg')" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fab fa-line"></i> 轉傳</button>
-                    </div>
-                </div>
-
-                <!-- 照片 2 -->
-                <div class="bg-white p-2 border border-gray-200 rounded-lg shadow-sm">
-                    <img src="./photo2.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=照片+2'" alt="活動照片" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(1)">
-                    <div class="flex gap-2">
-                        <a href="./photo2.jpg" download="Eric_Activity_2.jpg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fas fa-download"></i> 儲存</a>
-                        <button onclick="shareToLine('https://ericytlin.github.io/photo2.jpg')" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fab fa-line"></i> 轉傳</button>
-                    </div>
-                </div>
-
-                <!-- 照片 3 -->
-                <div class="bg-white p-2 border border-gray-200 rounded-lg shadow-sm">
-                    <img src="./photo3.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=照片+3'" alt="活動照片" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(2)">
-                    <div class="flex gap-2">
-                        <a href="./photo3.jpg" download="Eric_Activity_3.jpg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fas fa-download"></i> 儲存</a>
-                        <button onclick="shareToLine('https://ericytlin.github.io/photo3.jpg')" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fab fa-line"></i> 轉傳</button>
-                    </div>
-                </div>
-
-                <!-- 照片 4 -->
-                <div class="bg-white p-2 border border-gray-200 rounded-lg shadow-sm">
-                    <img src="./photo4.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=照片+4'" alt="活動照片" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(3)">
-                    <div class="flex gap-2">
-                        <a href="./photo4.jpg" download="Eric_Activity_4.jpg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fas fa-download"></i> 儲存</a>
-                        <button onclick="shareToLine('https://ericytlin.github.io/photo4.jpg')" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1"><i class="fab fa-line"></i> 轉傳</button>
+                <div class="flex items-start gap-3 border-t border-gray-200 pt-4">
+                    <div class="mt-1 text-gray-400 text-lg"><i class="fas fa-microchip"></i></div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 text-lg">國立中央大學</h3>
+                        <p class="text-sm text-gray-500 font-medium">電機系 1994級 (第11屆)</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 網頁與社群 QR Code 區塊 (修改為雙欄) -->
-        <div class="px-6 mt-2">
-            <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 text-center shadow-lg relative overflow-hidden">
-                <!-- 裝飾 -->
+        <!-- 業界經歷 (Logo 版) -->
+        <div class="px-6 mb-8">
+            <h2 class="text-sm font-bold text-compal uppercase tracking-wider mb-3"><i class="fas fa-briefcase mr-2"></i>業界經歷</h2>
+            <div class="bg-white rounded-xl p-5 border border-gray-100 shadow-sm">
+                <div class="flex flex-wrap justify-center items-center gap-x-5 gap-y-4">
+                    <!-- 請確保這些 Logo 圖片已上傳至 GitHub，預設會有灰階效果，點擊/滑過變彩色 -->
+                    <img src="./acer_logo.png" onerror="this.src='https://placehold.co/80x30/FFF/666?text=Acer'" alt="Acer" title="Acer" class="h-6 object-contain grayscale hover:grayscale-0 transition duration-300">
+                    <img src="./htc_logo.png" onerror="this.src='https://placehold.co/80x30/FFF/666?text=HTC'" alt="HTC Corporation" title="HTC Corporation" class="h-6 object-contain grayscale hover:grayscale-0 transition duration-300">
+                    <img src="./phitech_logo.png" onerror="this.src='https://placehold.co/100x30/FFF/666?text=Phitech'" alt="Phitech Technology" title="Phitech Technology" class="h-6 object-contain grayscale hover:grayscale-0 transition duration-300">
+                    <img src="./commverge_logo.png" onerror="this.src='https://placehold.co/110x30/FFF/666?text=CommVerge'" alt="CommVerge Solutions" title="CommVerge Solutions" class="h-6 object-contain grayscale hover:grayscale-0 transition duration-300">
+                    <img src="./lucent_logo.png" onerror="this.src='https://placehold.co/90x30/FFF/666?text=Lucent'" alt="Lucent Technologies" title="Lucent Technologies" class="h-6 object-contain grayscale hover:grayscale-0 transition duration-300">
+                </div>
+            </div>
+        </div>
+
+        <!-- 公司與聯絡資訊 -->
+        <div class="px-6 space-y-4 mb-6">
+            <h2 class="text-sm font-bold text-compal uppercase tracking-wider mb-3"><i class="fas fa-address-card mr-2"></i>聯絡資訊</h2>
+            
+            <div class="bg-white rounded-xl p-5 border border-gray-100 shadow-sm space-y-4">
+                
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded bg-gray-100 text-gray-500 flex items-center justify-center shrink-0">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="text-base text-gray-700 font-medium">
+                        台北市內湖區陽光街385號
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded bg-green-100 text-green-600 flex items-center justify-center shrink-0">
+                        <i class="fab fa-line text-lg"></i>
+                    </div>
+                    <div class="text-base text-gray-700 font-medium flex-1">
+                        eric.ytlin
+                    </div>
+                    <button onclick="copyText('eric.ytlin', 'Line ID')" class="text-sm bg-gray-100 hover:bg-gray-200 px-3 py-1.5 rounded text-gray-600 transition font-bold">
+                        複製
+                    </button>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded bg-green-50 text-green-500 flex items-center justify-center shrink-0">
+                        <i class="fab fa-weixin text-lg"></i>
+                    </div>
+                    <div class="text-base text-gray-700 font-medium flex-1">
+                        ericytlin
+                    </div>
+                    <button onclick="copyText('ericytlin', 'WeChat ID')" class="text-sm bg-gray-100 hover:bg-gray-200 px-3 py-1.5 rounded text-gray-600 transition font-bold">
+                        複製
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="w-11/12 mx-auto h-px bg-gray-200 mb-6"></div>
+
+        <!-- 一氣呵成加好友與 Hello 按鈕 -->
+        <div class="px-6 mb-8 space-y-3">
+            <button onclick="addLineAndSendMsg()" class="w-full bg-[#06C755] hover:bg-green-600 text-white text-sm py-4 rounded-xl transition-colors duration-300 shadow-md flex items-center justify-center font-bold tracking-wide border border-[#05a546]">
+                <i class="fas fa-user-plus mr-2 text-xl"></i> 一鍵加 Eric LINE 並打招呼
+            </button>
+            <button onclick="sendHelloToLine()" class="w-full bg-white hover:bg-gray-50 text-[#06C755] text-sm py-4 rounded-xl transition-colors duration-300 shadow-sm flex items-center justify-center font-bold tracking-wide border border-[#06C755]">
+                <i class="fas fa-comment-dots mr-2 text-xl"></i> 已是好友？點此發送 Hello
+            </button>
+        </div>
+
+        <!-- 名片相片 -->
+        <div class="px-6 mb-8">
+            <div class="flex items-center gap-2 mb-4 text-compal font-bold tracking-widest text-lg justify-center">
+                <i class="fas fa-images"></i>
+                <h2>名片相片</h2>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4">
+                <!-- 照片 1 -->
+                <div class="bg-white p-2 border border-gray-200 rounded-lg shadow-sm">
+                    <img src="./photo1.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=相片+1'" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(0)">
+                    <div class="flex gap-2">
+                        <a href="./photo1.jpg" download="Eric_Card_1.jpg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1 font-bold"><i class="fas fa-download"></i> 儲存</a>
+                        <button onclick="shareToLine('https://ericytlin.github.io/photo1.jpg')" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1 font-bold"><i class="fab fa-line"></i> 轉傳</button>
+                    </div>
+                </div>
+
+                <!-- 照片 2 -->
+                <div class="bg-white p-2 border border-gray-200 rounded-lg shadow-sm">
+                    <img src="./photo2.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=相片+2'" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(1)">
+                    <div class="flex gap-2">
+                        <a href="./photo2.jpg" download="Eric_Card_2.jpg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1 font-bold"><i class="fas fa-download"></i> 儲存</a>
+                        <button onclick="shareToLine('https://ericytlin.github.io/photo2.jpg')" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1 font-bold"><i class="fab fa-line"></i> 轉傳</button>
+                    </div>
+                </div>
+
+                <!-- 照片 3 -->
+                <div class="bg-white p-2 border border-gray-200 rounded-lg shadow-sm">
+                    <img src="./photo3.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=相片+3'" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(2)">
+                    <div class="flex gap-2">
+                        <a href="./photo3.jpg" download="Eric_Card_3.jpg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1 font-bold"><i class="fas fa-download"></i> 儲存</a>
+                        <button onclick="shareToLine('https://ericytlin.github.io/photo3.jpg')" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1 font-bold"><i class="fab fa-line"></i> 轉傳</button>
+                    </div>
+                </div>
+
+                <!-- 照片 4 -->
+                <div class="bg-white p-2 border border-gray-200 rounded-lg shadow-sm">
+                    <img src="./photo4.jpg" onerror="this.src='https://placehold.co/400x300/e5e7eb/a3a8b4?text=相片+4'" class="w-full h-32 object-contain bg-gray-50 rounded mb-2 border border-gray-100 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(3)">
+                    <div class="flex gap-2">
+                        <a href="./photo4.jpg" download="Eric_Card_4.jpg" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1 font-bold"><i class="fas fa-download"></i> 儲存</a>
+                        <button onclick="shareToLine('https://ericytlin.github.io/photo4.jpg')" class="flex-1 bg-[#06C755] hover:bg-green-600 text-white text-xs text-center py-1.5 rounded transition flex items-center justify-center gap-1 font-bold"><i class="fab fa-line"></i> 轉傳</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="px-6 mt-4">
+            <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-5 text-center shadow-lg relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-20 h-20 bg-compal opacity-20 rounded-bl-full"></div>
                 
-                <h2 class="text-white font-bold mb-4 tracking-wide">個人網頁與社群連結</h2>
+                <h2 class="text-white font-bold mb-4 tracking-wide text-lg">網頁與社群連結</h2>
                 
+                <!-- 雙欄位配置 -->
                 <div class="grid grid-cols-2 gap-4">
+                    
                     <!-- 左側：專屬網頁 -->
                     <div class="flex flex-col items-center">
-                        <p class="text-gray-400 text-xs mb-2">我的數位名片</p>
-                        <!-- 自動生成 專屬網頁 QR Code -->
+                        <p class="text-gray-400 text-xs mb-2 font-medium">數位名片網頁</p>
                         <div class="bg-white p-2 rounded-xl inline-block shadow-inner mb-3">
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://ericytlin.github.io&margin=0" 
-                                 alt="GitHub Pages QR Code" 
-                                 class="w-28 h-28">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://ericytlin.github.io&margin=0" class="w-28 h-28">
                         </div>
                         <div class="flex flex-col gap-2 w-full">
                             <a href="https://ericytlin.github.io" target="_blank" class="w-full bg-white/10 hover:bg-white/20 text-white text-xs py-2 rounded-lg transition-colors duration-300 border border-white/20 flex items-center justify-center">
                                 <i class="fas fa-link mr-1"></i> 開啟網頁
                             </a>
-                            <button onclick="shareCardToLine()" class="w-full bg-[#06C755] hover:bg-green-600 text-white text-xs py-2 rounded-lg transition-colors duration-300 shadow-sm flex items-center justify-center">
+                            <button onclick="shareCardToLine()" class="w-full bg-[#06C755] hover:bg-green-600 text-white text-xs py-2 rounded-lg transition-colors duration-300 flex items-center justify-center">
                                 <i class="fab fa-line mr-1"></i> 轉傳名片
                             </button>
                         </div>
@@ -241,82 +278,65 @@
 
                     <!-- 右側：Facebook -->
                     <div class="flex flex-col items-center">
-                        <p class="text-gray-400 text-xs mb-2">Facebook 主頁</p>
-                        <!-- 自動生成 Facebook QR Code -->
+                        <p class="text-gray-400 text-xs mb-2 font-medium">Facebook 主頁</p>
                         <div class="bg-white p-2 rounded-xl inline-block shadow-inner mb-3 relative">
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.facebook.com/eric.lin.520125&margin=0" 
-                                 alt="Facebook QR Code" 
-                                 class="w-28 h-28">
-                            <!-- 在 QR Code 中間放一個小小的 FB Logo -->
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.facebook.com/eric.lin.520125&margin=0" class="w-28 h-28">
+                            <!-- FB 中間小 Logo 裝飾 -->
                             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full p-1">
                                 <i class="fab fa-facebook text-[#1877F2] text-xl"></i>
                             </div>
                         </div>
                         <div class="flex flex-col gap-2 w-full">
-                            <!-- fb://profile/ 嘗試直接開 App，如果失敗會用一般網址開 -->
-                            <a href="https://www.facebook.com/eric.lin.520125" target="_blank" class="w-full bg-[#1877F2] hover:bg-blue-600 text-white text-xs py-2 rounded-lg transition-colors duration-300 shadow-sm flex items-center justify-center">
+                            <a href="https://www.facebook.com/eric.lin.520125" target="_blank" class="w-full bg-[#1877F2] hover:bg-blue-600 text-white text-xs py-2 rounded-lg transition-colors duration-300 flex items-center justify-center">
                                 <i class="fab fa-facebook-f mr-1"></i> 開啟 Facebook
                             </a>
-                             <!-- 佔位用透明按鈕，保持左右高度對齊 -->
-                             <div class="w-full text-transparent text-xs py-2">
-                                佔位
-                            </div>
+                            <!-- 佔位隱形按鈕保持高度對齊 -->
+                            <div class="w-full py-2"></div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
 
-        <!-- 底部版權 -->
-        <div class="text-center text-xs text-gray-400 mt-8 pb-4">
-                &copy; <script>document.write(new Date().getFullYear())</script> Eric Lin. All rights reserved.
-            </div>
-
+        <div class="text-center text-xs text-gray-400 mt-8">
+            &copy; <script>document.write(new Date().getFullYear())</script> Eric Lin. All rights reserved.
         </div>
-        
-        <!-- 懸浮按鈕：一鍵存入通訊錄 (包含大頭照) -->
-        <button onclick="downloadVCard()" class="absolute bottom-6 right-6 w-14 h-14 bg-compal text-white rounded-full shadow-lg shadow-compal/40 flex items-center justify-center text-xl hover:bg-compal-light transition-transform hover:scale-110 z-50 group" title="儲存聯絡人">
-            <i class="fas fa-user-plus group-hover:hidden"></i>
-            <i class="fas fa-download hidden group-hover:block"></i>
-        </button>
-
-        <!-- 圖片放大預覽與滑動切換 Modal -->
-        <!-- 預設加入 hidden 與 opacity-0 -->
-        <div id="imageModal" class="fixed inset-0 z-[100] hidden bg-black/95 flex flex-col items-center justify-center backdrop-blur-md transition-opacity duration-300 opacity-0" onclick="closeImageModal()">
-            <!-- 右上角關閉按鈕 -->
-            <button class="absolute top-6 right-6 text-white/70 text-4xl hover:text-white focus:outline-none z-50 transition" onclick="closeImageModal()">&times;</button>
-            
-            <!-- 左切換按鈕 (電腦版點擊用) -->
-            <button class="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 text-white/30 hover:text-white text-3xl md:text-5xl p-4 focus:outline-none z-50 transition" onclick="event.stopPropagation(); changeImage(-1)">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-
-            <!-- 圖片本體 (點擊圖片不關閉視窗) -->
-            <img id="modalImage" src="" alt="Enlarged Photo" class="max-w-[90%] max-h-[80vh] object-contain rounded-md shadow-2xl scale-95 transition-all duration-300 cursor-default" onclick="event.stopPropagation();">
-            
-            <!-- 右切換按鈕 (電腦版點擊用) -->
-            <button class="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 text-white/30 hover:text-white text-3xl md:text-5xl p-4 focus:outline-none z-50 transition" onclick="event.stopPropagation(); changeImage(1)">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-
-            <!-- 提示文字與指示器 -->
-            <div class="absolute bottom-10 flex flex-col items-center gap-1">
-                <div class="flex gap-2" id="modalIndicators">
-                    <!-- 圓點指示器由 JS 動態生成 -->
-                </div>
-                <p class="text-white/50 text-xs mt-2 tracking-wider">左右滑動切換照片，點擊背景關閉</p>
-            </div>
-        </div>
-
     </main>
 
+    <!-- 懸浮按鈕：儲存聯絡人 -->
+    <button onclick="downloadVCard()" class="fixed bottom-6 right-6 w-14 h-14 bg-compal text-white rounded-full shadow-lg shadow-compal/40 flex items-center justify-center text-xl hover:bg-compal-light transition-transform hover:scale-110 z-[90] group" title="儲存聯絡人">
+        <i class="fas fa-user-plus group-hover:hidden"></i>
+        <i class="fas fa-download hidden group-hover:block"></i>
+    </button>
+
+    <!-- 圖片放大預覽與滑動切換 Modal -->
+    <div id="imageModal" class="fixed inset-0 z-[100] hidden bg-black/95 flex flex-col items-center justify-center backdrop-blur-md transition-opacity duration-300 opacity-0" onclick="closeImageModal()">
+        <button class="absolute top-6 right-6 text-white/70 text-4xl hover:text-white focus:outline-none z-50 transition" onclick="closeImageModal()">&times;</button>
+        
+        <button class="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 text-white/30 hover:text-white text-3xl md:text-5xl p-4 focus:outline-none z-50 transition" onclick="event.stopPropagation(); changeImage(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <img id="modalImage" src="" class="max-w-[90%] max-h-[80vh] object-contain rounded-md shadow-2xl scale-95 transition-all duration-300 cursor-default" onclick="event.stopPropagation();">
+        
+        <button class="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 text-white/30 hover:text-white text-3xl md:text-5xl p-4 focus:outline-none z-50 transition" onclick="event.stopPropagation(); changeImage(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <div class="absolute bottom-10 flex flex-col items-center gap-1">
+            <div class="flex gap-2" id="modalIndicators"></div>
+            <p class="text-white/50 text-xs mt-2 tracking-wider">左右滑動切換照片，點擊背景關閉</p>
+        </div>
+    </div>
+
     <!-- 訊息提示框 -->
-    <div id="toast" class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-5 py-2.5 rounded-full shadow-lg text-sm transition-opacity duration-300 opacity-0 pointer-events-none z-50">
+    <div id="toast" class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-5 py-2.5 rounded-full shadow-lg text-sm transition-opacity duration-300 opacity-0 pointer-events-none z-[110]">
         已複製到剪貼簿
     </div>
 
     <script>
-        // 複製文字功能
+        // 複製與 Toast 提示邏輯
         function copyText(text, type) {
             const textArea = document.createElement("textarea");
             textArea.value = text;
@@ -326,152 +346,62 @@
                 document.execCommand('copy');
                 showToast(`已複製 ${type}: ${text}`);
             } catch (err) {
-                console.error('複製失敗', err);
                 showToast('複製失敗，請手動複製');
             }
             document.body.removeChild(textArea);
         }
 
-        // 顯示提示訊息
         function showToast(message) {
             const toast = document.getElementById('toast');
             toast.innerText = message;
             toast.classList.remove('opacity-0');
-            setTimeout(() => {
-                toast.classList.add('opacity-0');
-            }, 2500);
+            setTimeout(() => toast.classList.add('opacity-0'), 2500);
         }
 
-        // 透過 LINE 轉傳單張照片網址
+        // LINE 轉傳邏輯
         function shareToLine(imageUrl) {
-            const lineShareUrl = `https://line.me/R/msg/text/?與您分享這張照片：\n${encodeURIComponent(imageUrl)}`;
-            window.open(lineShareUrl, '_blank');
+            window.open(`https://line.me/R/msg/text/?與您分享這張照片：\n${encodeURIComponent(imageUrl)}`, '_blank');
         }
 
-        // 透過 LINE 轉傳個人名片網址
         function shareCardToLine() {
             const text = "與您分享 林育澤(Eric) 的數位名片！\n\n🌐 專屬網頁：https://ericytlin.github.io\n✅ LINE ID：eric.ytlin";
-            const lineShareUrl = `https://line.me/R/msg/text/?${encodeURIComponent(text)}`;
-            window.open(lineShareUrl, '_blank');
+            window.open(`https://line.me/R/msg/text/?${encodeURIComponent(text)}`, '_blank');
         }
 
-        // 一氣呵成加好友並複製打招呼文字
+        // LINE 加好友與打招呼邏輯
         function addLineAndSendMsg() {
             const text = "Hi Eric！很高興認識您！\n我已經將您的數位名片存起來囉：\nhttps://ericytlin.github.io";
             const textArea = document.createElement("textarea");
             textArea.value = text;
             document.body.appendChild(textArea);
             textArea.select();
-            
-            try {
-                document.execCommand('copy');
-                showToast('已複製招呼語！前往 LINE...');
-            } catch (err) {
-                console.error('複製失敗', err);
-            }
+            try { document.execCommand('copy'); showToast('已複製招呼語！前往 LINE...'); } catch (err) {}
             document.body.removeChild(textArea);
             window.location.href = 'https://line.me/ti/p/~eric.ytlin';
         }
 
-        // 已是好友時，發送 Hello 訊息
         function sendHelloToLine() {
             const text = "Hello Eric！";
             const textArea = document.createElement("textarea");
             textArea.value = text;
             document.body.appendChild(textArea);
             textArea.select();
-            
-            try {
-                document.execCommand('copy');
-                showToast('已複製 Hello！前往 LINE 貼上即可');
-            } catch (err) {
-                console.error('複製失敗', err);
-            }
+            try { document.execCommand('copy'); showToast('已複製 Hello！前往 LINE 貼上即可'); } catch (err) {}
             document.body.removeChild(textArea);
             window.location.href = 'https://line.me/ti/p/~eric.ytlin';
         }
 
-        // 下載包含大頭照的 vCard
-        async function downloadVCard() {
-            showToast('正在準備名片，請稍候...');
-            let photoData = '';
-            try {
-                const response = await fetch('./profile.jpg');
-                if (response.ok) {
-                    const blob = await response.blob();
-                    const reader = new FileReader();
-                    const base64Promise = new Promise((resolve) => {
-                        reader.onloadend = () => {
-                            if (reader.result) { resolve(reader.result.split(',')[1]); } 
-                            else { resolve(null); }
-                        };
-                        reader.onerror = () => resolve(null);
-                    });
-                    reader.readAsDataURL(blob); 
-                    const base64 = await base64Promise;
-                    if (base64) {
-                        photoData = `\nPHOTO;ENCODING=b;TYPE=JPEG:${base64}`;
-                    }
-                }
-            } catch (err) {
-                console.log('無法載入照片作為 vCard 頭像', err);
-            }
-
-            const vcardData = `BEGIN:VCARD
-VERSION:3.0
-FN:林育澤
-N:林;育澤;;;
-NICKNAME:Eric 好立刻
-ORG:仁寶電腦 COMPAL;智慧型裝置事業群 SDBG
-TITLE:政大 EMBA 105級文科資創組
-TEL;TYPE=CELL,VOICE:0910-136-822
-EMAIL;TYPE=WORK,INTERNET:eric.ytlin@gmail.com
-URL:https://ericytlin.github.io
-ADR;TYPE=WORK:;;陽光街385號;內湖區;台北市;;台灣
-NOTE:政大 IMBA 2003 / 國立中央大學電機系1994級 / Line ID: eric.ytlin / WeChat: ericytlin${photoData}
-END:VCARD`;
-
-            const blobVCard = new Blob([vcardData], { type: 'text/vcard;charset=utf-8' });
-            const url = URL.createObjectURL(blobVCard);
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', '林育澤_Eric.vcf');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            setTimeout(() => {
-                URL.revokeObjectURL(url);
-                showToast('已下載聯絡人資訊！');
-            }, 100);
-        }
-
-        // ==========================
-        // 圖片滑動與放大相關邏輯
-        // ==========================
-        
-        // 定義相簿陣列與當前索引
-        const photoGallery = [
-            './photo1.jpg',
-            './photo2.jpg',
-            './photo3.jpg',
-            './photo4.jpg'
-        ];
+        // 圖片放大預覽與滑動邏輯
+        const photoGallery = ['./photo1.jpg', './photo2.jpg', './photo3.jpg', './photo4.jpg'];
         let currentPhotoIndex = 0;
 
-        // 開啟 Modal
         function openImageModal(index) {
             currentPhotoIndex = index;
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
-            
             modalImg.src = photoGallery[currentPhotoIndex];
             updateIndicators();
-            
-            // 顯示 Modal
             modal.classList.remove('hidden');
-            
-            // 稍微延遲以觸發淡入/放大動畫
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
                 modalImg.classList.remove('scale-95');
@@ -479,33 +409,21 @@ END:VCARD`;
             }, 10);
         }
 
-        // 關閉 Modal
         function closeImageModal() {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
-            
-            // 觸發淡出/縮小動畫
             modal.classList.add('opacity-0');
             modalImg.classList.remove('scale-100');
             modalImg.classList.add('scale-95');
-            
-            // 動畫結束後完全隱藏
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 300);
+            setTimeout(() => modal.classList.add('hidden'), 300);
         }
 
-        // 切換圖片 (direction: 1 為下一張, -1 為上一張)
         function changeImage(direction) {
             currentPhotoIndex += direction;
-            
-            // 循環邏輯
             if (currentPhotoIndex < 0) currentPhotoIndex = photoGallery.length - 1;
             if (currentPhotoIndex >= photoGallery.length) currentPhotoIndex = 0;
             
             const modalImg = document.getElementById('modalImage');
-            
-            // 增加淡出淡入效果
             modalImg.style.opacity = '0.3';
             modalImg.style.transform = `scale(0.98)`;
             
@@ -517,7 +435,6 @@ END:VCARD`;
             }, 150);
         }
 
-        // 更新下方小圓點指示器
         function updateIndicators() {
             const container = document.getElementById('modalIndicators');
             container.innerHTML = '';
@@ -528,33 +445,47 @@ END:VCARD`;
             });
         }
 
-        // 手機滑動 (Swipe) 偵測邏輯
+        // 滑動 (Swipe) 偵測
         let touchStartX = 0;
         let touchEndX = 0;
         const modalElement = document.getElementById('imageModal');
 
-        // 監聽觸控開始
-        modalElement.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        // 監聽觸控結束
+        modalElement.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX, { passive: true });
         modalElement.addEventListener('touchend', e => {
             touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
+            if (touchEndX < touchStartX - 50) changeImage(1);
+            if (touchEndX > touchStartX + 50) changeImage(-1);
         }, { passive: true });
 
-        // 判斷滑動方向
-        function handleSwipe() {
-            const swipeThreshold = 50; // 最低滑動距離判定 (避免誤觸)
-            if (touchEndX < touchStartX - swipeThreshold) {
-                // 向左滑動 -> 下一張
-                changeImage(1);
-            }
-            if (touchEndX > touchStartX + swipeThreshold) {
-                // 向右滑動 -> 上一張
-                changeImage(-1);
-            }
+        // vCard 下載邏輯
+        async function downloadVCard() {
+            showToast('正在準備名片，請稍候...');
+            let photoData = '';
+            try {
+                const response = await fetch('./profile.jpg');
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const reader = new FileReader();
+                    const base64Promise = new Promise((resolve) => {
+                        reader.onloadend = () => resolve(reader.result ? reader.result.split(',')[1] : null);
+                        reader.onerror = () => resolve(null);
+                    });
+                    reader.readAsDataURL(blob); 
+                    const base64 = await base64Promise;
+                    if (base64) photoData = `\nPHOTO;ENCODING=b;TYPE=JPEG:${base64}`;
+                }
+            } catch (err) {}
+
+            const vcardData = `BEGIN:VCARD\nVERSION:3.0\nFN:林育澤\nN:林;育澤;;;\nNICKNAME:Eric 好立刻\nORG:仁寶電腦 COMPAL;智慧型裝置事業群 SDBG\nTITLE:政大 EMBA 105級文科資創組\nTEL;TYPE=CELL,VOICE:0910-136-822\nEMAIL;TYPE=WORK,INTERNET:eric.ytlin@gmail.com\nURL:https://ericytlin.github.io\nADR;TYPE=WORK:;;陽光街385號;內湖區;台北市;;台灣\nNOTE:政大 IMBA 2003 / 國立中央大學電機系1994級 / Line ID: eric.ytlin / WeChat: ericytlin${photoData}\nEND:VCARD`;
+            const blobVCard = new Blob([vcardData], { type: 'text/vcard;charset=utf-8' });
+            const url = URL.createObjectURL(blobVCard);
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', '林育澤_Eric.vcf');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            setTimeout(() => { URL.revokeObjectURL(url); showToast('已下載聯絡人資訊！'); }, 100);
         }
     </script>
 </body>
